@@ -7,6 +7,7 @@ import { FileUpload } from "./FileUpload";
 import { textProcessor } from "@/services/textProcessor";
 import { prayerGenerator } from "@/services/prayerGenerator";
 import { PrayerType } from "@/types/scripture";
+import { PrayerOutput } from "../output/PrayerOutput";
 
 export function ScriptureInput() {
   const [text, setText] = React.useState('');
@@ -63,16 +64,7 @@ export function ScriptureInput() {
         기도문 생성하기
       </Button>
 
-      {Object.entries(generatedPrayers).map(([type, prayer]) => (
-        <div key={type} className="space-y-2">
-          <h3 className="font-semibold">
-            {type === 'beginner' ? '초심자용 기도문' : '경륜자용 기도문'}
-          </h3>
-          <div className="whitespace-pre-wrap p-4 bg-muted rounded-lg">
-            {prayer}
-          </div>
-        </div>
-      ))}
+      <PrayerOutput prayers={generatedPrayers} />
     </div>
   );
 } 
